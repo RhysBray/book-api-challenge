@@ -24,6 +24,7 @@ $secondary-color: burlywood;
     }
   }
   .book-box {
+    border-top: black solid 2pt;
     display: flex;
     justify-content: space-around;
     align-items: center;

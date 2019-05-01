@@ -6,54 +6,42 @@ import { IBook } from "../../reducers/bookReducer";
 import { IStore } from "../../reducers";
 import { fetchBooks } from "../../reducers/bookReducer";
 
-export interface IProps {}
+export interface IOwnProps {}
 
-export interface IStateProps {}
+export interface IStateProps {
+  books: IBook[];
+  fetchBooks: (authorName: string) => void;
+}
 
 export interface IState {}
 
-class BookContainer extends React.Component<IProps, IState> {
-  public book: IBook = {
-    title: "The Book of books",
-    author: "Mr B Writer",
-    description: "So many words, this is definitely a book",
-    pages: 1001.1
+class BookContainer extends React.Component<IOwnProps & IStateProps, IState> {
+  // public book: IBook = {
+  //   title: "The Book of books",
+  //   author: "Mr B Writer",
+  //   description: "So many words, this is definitely a book",
+  //   pages: 1001.1
+  // };
+
+  public author = "jane";
+
+  public componentDidMount = () => {
+    this.props.fetchBooks(this.author);
   };
   // state = { :  }
   public render() {
     return (
       <div className={styles["book-container"]}>
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
-        <Book book={this.book} />
+        {this.props.books.map((book, index) => (
+          <Book key={index} book={book} />
+        ))}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: IStore, props: IProps) => {
-  return {};
+const mapStateToProps = (state: IStore, props: IOwnProps) => {
+  return { books: state.books.books };
 };
 
 const mapDispatchToProps = { fetchBooks };

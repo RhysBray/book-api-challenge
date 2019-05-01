@@ -13,10 +13,11 @@ class Book extends React.Component<IProps, IState> {
   public render() {
     return (
       <article className={styles.book}>
-        <p>{this.props.book.title}</p>
-        <p>{this.props.book.author}</p>
-        <p>{this.props.book.description}</p>
-        <p>{this.props.book.pages}</p>
+        <p>{this.props.book.volumeInfo.title}</p>
+        <p>{this.props.book.volumeInfo.subtitle}</p>
+        <p>{this.props.book.volumeInfo.authors}</p>
+        <p>{this.props.book.volumeInfo.categories}</p>
+        <p>{this.props.book.volumeInfo.pageCount}</p>
       </article>
     );
   }
