@@ -10,16 +10,18 @@ export interface IOwnProps {}
 export interface IStateProps {
   books: IBook[];
   fetchBooks: (authorName: string) => void;
+  author: string;
 }
 
 export interface IState {}
 
 class BookContainer extends React.Component<IOwnProps & IStateProps, IState> {
-  public author = "jane";
-
   public componentDidMount = () => {
-    this.props.fetchBooks(this.author);
+    this.props.fetchBooks(this.props.author);
   };
+  // public componentDidUpdate = () => {
+  //   this.props.fetchBooks(this.props.author);
+  // };
   // state = { :  }
   public render() {
     return (
@@ -33,7 +35,7 @@ class BookContainer extends React.Component<IOwnProps & IStateProps, IState> {
 }
 
 const mapStateToProps = (state: IStore, props: IOwnProps) => {
-  return { books: state.books.books };
+  return { books: state.books.books, author: state.books.author };
 };
 
 const mapDispatchToProps = { fetchBooks };

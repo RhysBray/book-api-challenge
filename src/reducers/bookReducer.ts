@@ -99,6 +99,24 @@ export interface IBook {
 export const FETCH_BOOKS = "FETCH_BOOKS";
 export const SUCCESS_FETCH_BOOKS = "SUCCESS_FETCH_BOOKS";
 export const FAILURE_FETCH_BOOKS = "FAILURE_FETCH_BOOKS";
+export const SET_AUTHOR = "SET_AUTHOR";
+
+// action interfaces
+export interface IGetBooksAction {
+  type: typeof FETCH_BOOKS;
+}
+export interface IGetBooksSuccessAction {
+  type: typeof SUCCESS_FETCH_BOOKS;
+  books: IBook[];
+}
+export interface IGetBooksFailureAction {
+  type: typeof FAILURE_FETCH_BOOKS;
+  error: Error;
+}
+export interface IChangeAuthor {
+  type: typeof SET_AUTHOR;
+  author: string;
+}
 
 // action creators
 export const getBooks = (): IGetBooksAction => ({
@@ -112,51 +130,46 @@ export const getBooksFailure = (error: Error): IGetBooksFailureAction => ({
   type: FAILURE_FETCH_BOOKS,
   error
 });
+export const changeAuthor = (author: string): IChangeAuthor => ({
+  type: SET_AUTHOR,
+  author
+});
 
-export const fetchBooks = (authorName: string) => (dispatch: any) => {
+export const fetchBooks = (author: string) => (dispatch: any) => {
   dispatch(getBooks());
   fetch(
     "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
-      authorName +
+      author +
       "&maxResults=20&key:AIzaSyDhHe5MvQYsUZscr1CGaVqSP_vX9oMmOCE"
   )
     .then(res => res.json())
     .then(data => dispatch(getBooksSuccess(data.items)))
-    .catch(error => dispatch(getBooksFailure(error)));
+    .catch(error => {
+      dispatch(getBooksFailure(error));
+      alert("rate limited");
+    });
 };
 
-// action interfaces
-
-export interface IGetBooksAction {
-  type: typeof FETCH_BOOKS;
-}
-export interface IGetBooksSuccessAction {
-  type: typeof SUCCESS_FETCH_BOOKS;
-  books: IBook[];
-}
-export interface IGetBooksFailureAction {
-  type: typeof FAILURE_FETCH_BOOKS;
-  error: Error;
-}
-
 // combining action creators
-
 type IBookActions =
   | IGetBooksAction
   | IGetBooksSuccessAction
-  | IGetBooksFailureAction;
+  | IGetBooksFailureAction
+  | IChangeAuthor;
 
 export interface IBookState {
   books: IBook[];
   error: null | Error;
   loading: boolean;
+  author: string;
 }
 
 // reducer with initial state
 const initialState: IBookState = {
   books: [],
   error: null,
-  loading: false
+  loading: false,
+  author: "a"
 };
 
 const bookReducer = (state = initialState, action: IBookActions) => {
@@ -167,6 +180,8 @@ const bookReducer = (state = initialState, action: IBookActions) => {
       return { ...state, loading: false, error: null, books: action.books };
     case FAILURE_FETCH_BOOKS:
       return { ...state, loading: false, error: action.error };
+    case SET_AUTHOR:
+      return { ...state, loading: false, error: null, author: action.author };
     default:
       return state;
   }

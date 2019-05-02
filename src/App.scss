@@ -13,12 +13,6 @@
     position: fixed;
     width: 100vw;
     height: 10vh;
-    input {
-      border: black 1pt solid;
-      padding-left: 5px;
-      font-size: 13pt;
-      height: 2em;
-    }
   }
   .book-box {
     @extend %flex-centered;

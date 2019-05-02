@@ -11,13 +11,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <div className="search-box">
+          <section className="search-box">
             <Search />
-          </div>
-          <div className="book-box">
+          </section>
+          <section className="book-box">
             <BookContainer />
             <Seven />
-          </div>
+          </section>
         </div>
       </Provider>
     );
