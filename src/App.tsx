@@ -4,6 +4,7 @@ import store from "./store";
 import "./App.scss";
 import BookContainer from "./containers/bookContainer/bookContainer";
 import Seven from "./components/seven/seven";
+import Search from ".//components/search/search";
 
 class App extends Component {
   public render() {
@@ -11,7 +12,7 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <div className="search-box">
-            <input type="search" placeholder="Search books here..." />
+            <Search />
           </div>
           <div className="book-box">
             <BookContainer />

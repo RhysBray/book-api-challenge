@@ -2,9 +2,8 @@ import * as React from "react";
 import styles from "./bookContainer.module.scss";
 import Book from "../../components/book/book";
 import { connect } from "react-redux";
-import { IBook } from "../../reducers/bookReducer";
+import { IBook, fetchBooks } from "../../reducers/bookReducer";
 import { IStore } from "../../reducers";
-import { fetchBooks } from "../../reducers/bookReducer";
 
 export interface IOwnProps {}
 
@@ -16,13 +15,6 @@ export interface IStateProps {
 export interface IState {}
 
 class BookContainer extends React.Component<IOwnProps & IStateProps, IState> {
-  // public book: IBook = {
-  //   title: "The Book of books",
-  //   author: "Mr B Writer",
-  //   description: "So many words, this is definitely a book",
-  //   pages: 1001.1
-  // };
-
   public author = "jane";
 
   public componentDidMount = () => {

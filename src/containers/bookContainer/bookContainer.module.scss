@@ -1,10 +1,11 @@
+@import "../../global.scss";
+//scss
 .book-container {
-  padding-top: 5vh;
-  display: flex;
+  @extend %flex-centered;
   justify-content: space-around;
-  align-items: center;
   flex-wrap: wrap;
-  background-color: burlywood;
+  background-color: $secondary-color;
+  padding-top: 5vh;
   width: 100vw;
   min-height: 90vh;
 }
