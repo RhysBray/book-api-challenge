@@ -13,7 +13,6 @@ export interface IStateProps {
 export interface IState {}
 
 class Search extends React.Component<IOwnProps & IStateProps, IState> {
-  // state = { :  }
   public render() {
     return (
       <section>
@@ -21,7 +20,6 @@ class Search extends React.Component<IOwnProps & IStateProps, IState> {
           className={styles.author}
           onChange={event => this.props.fetchBooks(event.target.value)}
         >
-          {/* onChange={event => this.props.fetchBooks(event.target.value)} */}
           <option value="a">Select an Author</option>
           <option value="jane austen">Jane Austen</option>
           <option value="isaac asimov">Isaac Asimov</option>

@@ -13,25 +13,38 @@ export interface IStateProps {
   author: string;
 }
 
-export interface IState {}
+export interface IState {
+  // books: IBook[];
+}
 
 class BookContainer extends React.Component<IOwnProps & IStateProps, IState> {
+  public state = { books: [] };
   public componentDidMount = () => {
     this.props.fetchBooks(this.props.author);
   };
   // public componentDidUpdate = () => {
   //   this.props.fetchBooks(this.props.author);
+  // console.log(this.props.author);
   // };
-  // state = { :  }
   public render() {
     return (
-      <div className={styles["book-container"]}>
-        {this.props.books.map((book, index) => (
-          <Book key={index} book={book} />
-        ))}
-      </div>
+      <>
+        {/* <input type="text" onChange={this.filterBooks} /> */}
+        <div className={styles["book-container"]}>
+          {this.props.books.map((book, index) => (
+            <Book key={index} book={book} />
+          ))}
+        </div>
+      </>
     );
   }
+  // private filterBooks = (event: any) => {
+  //   let filterBooks: IBook[] = [];
+  //   filterBooks = this.props.books.filter(book =>
+  //     book.volumeInfo.description.includes(event.target.value)
+  //   );
+  //   console.log(filterBooks);
+  // };
 }
 
 const mapStateToProps = (state: IStore, props: IOwnProps) => {
