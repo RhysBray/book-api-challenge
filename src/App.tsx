@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "./App.scss";
 import BookContainer from "./containers/bookContainer/bookContainer";
-import Seven from "./components/seven/seven";
 import Search from ".//components/search/search";
 
 class App extends Component {
@@ -16,7 +15,6 @@ class App extends Component {
           </section>
           <section className="book-box">
             <BookContainer />
-            <Seven />
           </section>
         </div>
       </Provider>
