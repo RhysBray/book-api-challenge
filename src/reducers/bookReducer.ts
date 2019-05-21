@@ -140,7 +140,7 @@ export const fetchBooks = (author: string) => (dispatch: any) => {
   fetch(
     "https://www.googleapis.com/books/v1/volumes?q=inauthor:" +
       author +
-      "&maxResults=20&key:AIzaSyDhHe5MvQYsUZscr1CGaVqSP_vX9oMmOCE"
+      "&maxResults=20&key:AIzaSyA5wXkMeJbotPhclQzUNOS6zA7pHW2hUYc"
   )
     .then(res => res.json())
     .then(data => dispatch(getBooksSuccess(data.items)))
